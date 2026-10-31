@@ -1,0 +1,27 @@
+#	Method	    URL	    Purpose
+1	POST	    /api/auth/register/	Register; returns the user and tokens
+2	POST	    /api/auth/login/	Login; returns access and refresh tokens
+3	POST	    /api/auth/refresh/	Get a new access token
+4	GET	        /api/auth/me/	Current user
+5	GET, POST	/api/projects/	List my projects; create one (creator becomes owner)
+6	GET	        /api/projects/{id}/	Project details
+7	PUT, PATCH	/api/projects/{id}/	Update a project (owner only)
+8	DELETE	    /api/projects/{id}/	Delete a project (owner only)
+9	GET	        /api/projects/{id}/dashboard/	Counts by status, overdue tasks, tasks per member
+10	GET, POST	/api/projects/{id}/members/	List members; add one by email (owner only)
+11	DELETE	    /api/projects/{id}/members/{user_id}/	Remove a member (owner only; the owner can’t be removed)
+12	GET, POST	/api/projects/{id}/tasks/	List tasks with filters, search, ordering and pagination; create a task
+Filter	?status=todo&priority=high	Only tasks that are todo and high priority
+Filter by person	?assignee=3	            Only tasks assigned to user 3
+Filter by date	    ?due_before=2026-12-31	Tasks due on or before that date
+Search	            ?search=login	        Tasks whose title contains “login”
+Ordering	        ?ordering=due_date or   ?ordering=-due_date	Sort by due date, earliest first; the - reverses it
+Pagination	        ?page=2&page_size=20	Show page 2, 20 tasks per page
+13	GET, PUT, PATCH	/api/projects/{id}/tasks/{task_id}/	Get or update a task
+14	DELETE	    /api/projects/{id}/tasks/{task_id}/	Soft delete (owner or task creator)
+15	GET, POST	/api/projects/{id}/tasks/{task_id}/comments/	List or add comments
+16	DELETE	    /api/projects/{id}/tasks/{task_id}/comments/{comment_id}/	Delete a comment (author or owner)
+17	GET	        /api/projects/{id}/tasks/{task_id}/activity/	Task audit trail
+
+Usernames: alice, bob, charlie, diana, ethan
+password: TpmDemo#2026
